@@ -1,8 +1,11 @@
-
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import GetData from "../services/getdata";
+import Link from "react-router-dom";
   
 function EntriesList(){
-    return <h1>Entries list</h1>
+    GetData.getAllCategories()
+      .then(response => {
+        console.log(response.data)});
 }
   
 export default EntriesList;
