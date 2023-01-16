@@ -3,46 +3,46 @@ import axios from "../axios-config";
 class GetData {
   //the HTTP requests for entries endpoint in API
   //get all
-  getAllEntries() {
-    return axios.get(`/entries`);
+  async getAllEntries() {
+    return await axios.get(`/entries`);
   }
   //get by id
-  getEntryById(id) {
-    return axios.get(`/entries/${id}`);
+  async getEntryById(id) {
+    return await axios.get(`/entries/${id}`);
   }
   // delete
-  deleteEntry(id) {
-    return axios.delete(`/entries/${id}`);
+  async deleteEntry(id) {
+    return await axios.delete(`/entries/${id}`);
   }
   //post
-  createEntry(data) {
-    return axios.post(`/entries`, data);
+  async createEntry(data) {
+    return await axios.post(`/entries`, data);
   }
   //patch
-  UpdateEntry(data) {
-    return axios.patch(`/entries`, data);
+  async UpdateEntry(data) {
+    return await axios.patch(`/entries`, data);
   }
 
   //the HTTP requests for categories endpoint in API
   //get all
-  getAllCategories() {
-    return axios.get(`/categories`);
+  async getAllCategories() {
+    return await axios.get(`/categories`);
   }
   //get by id
-  getCategoryById(id) {
-    return axios.get(`/categories/${id}`);
+  async getCategoryById(id) {
+    return await axios.get(`/categories/${id}`);
   }
   // delete
-  deleteCategory(id) {
-    return axios.delete(`/categories/${id}`);
+  async deleteCategory(id) {
+    return await axios.delete(`/categories/${id}`);
   }
   //post
-  createCategory(data) {
-    return axios.post(`/categories`, data);
+  async createCategory(data) {
+    return await axios.post(`/categories`, data);
   }
   //patch
-  UpdateCategory(data) {
-    return axios.patch(`/categories`, data);
+  async UpdateCategory(data) {
+    return await axios.patch(`/categories`, data);
   }
 }
 

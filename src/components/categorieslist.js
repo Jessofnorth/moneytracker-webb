@@ -9,14 +9,15 @@ function CategoriesList() {
   const [Error, setError] = useState(false);
 
   const Data = GetData.getAllCategories()
-    .then(function (res) {
-      // set the data to the state
-      setCategories(res.data);
-    })
-    .catch(function (error) {
-      // handle error
-      setError(true);
-    });
+      .then(function (res) {
+        // set the data to the state
+        const entry = res.data;
+        // setCategories(entry);
+      })
+      .catch(function (error) {
+        // handle error
+        setError(true);
+      });
   if (Error === true) {
     return <h1>There was an error.</h1>;
   } else {
