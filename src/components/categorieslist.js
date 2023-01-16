@@ -1,11 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Stack, Button } from "react-bootstrap";
 import Card from "./categorycard";
-import { MoneyTrackerBudgets } from "../context/context";
 import AddCategoryModal from "./addCategoryModal";
+import GetData from "../services/getdata";
 
 function CategoriesList() {
-  const { Categories, entriesByCategory } = MoneyTrackerBudgets();
+  const [Categories, setCategories] = useState([]);
+  const [Entries, setEntries] = useState([]);
+  useEffect(() => {
+    const fetch = async () => {
+      await GetData.getAllCategories()
+        .then(function (res) {
+          // handle success
+          setCategories(res.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    };
+    fetch();
+  }, []);
+  useEffect(() => {
+    const fetch = async () => {
+      await GetData.getAllEntries()
+        .then(function (res) {
+          // handle success
+          setEntries(res.data);
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    };
+    fetch();
+  }, []);
+
+  function entriesByCategory(id) {
+    return Entries.filter((Entries) => Entries.category === id);
+  }
+  console.log(Entries, Categories);
+  //RETURN
   return (
     <div className="m-3">
       <Stack
@@ -40,7 +75,7 @@ function CategoriesList() {
           );
         })}
       </div>
-      <AddCategoryModal show />
+      <AddCategoryModal />
     </div>
   );
 }
