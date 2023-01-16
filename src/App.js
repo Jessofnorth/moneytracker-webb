@@ -10,17 +10,17 @@ import { MoneyTrackerProvider } from "./context/context";
 function App() {
   return (
     <>
-    <MoneyTrackerProvider>
-      <Router>
-        <Navigation />
-        <main>
-          <Routes>
-            <Route path="/" element={<Categorieslist />} />
-            <Route path="/about" element={<About />} />
-          </Routes>
-        </main>
-      </Router>
-      </MoneyTrackerProvider>
+        <MoneyTrackerProvider>
+          <Router>
+            <Navigation />
+            <main>
+              <Routes>
+                <Route path="/" element={<Categorieslist />} />
+                <Route path="/about" element={<About />} />
+              </Routes>
+            </main>
+          </Router>
+        </MoneyTrackerProvider>
     </>
   );
 }

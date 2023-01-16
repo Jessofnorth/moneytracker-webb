@@ -1,23 +1,22 @@
 import React from "react";
 import { Card, ProgressBar, Stack, Button } from "react-bootstrap";
 function Cards(data) {
-  var total = 1600;
   return (
     <Card>
       <Card.Body key={data._id}>
         <Card.Title className="d-flex justify-content-between">
           <div className="me-5">{data.name}</div>
           <div className="d-flex align-items-baseline">
-            {total} sek
+            {data.total} sek
             <span className="text-muted fs-6 ms-1">/ {data.maxbudget} sek</span>
           </div>
         </Card.Title>
         <ProgressBar
           className="rounded-pill"
-          variant={getBarColor(total, data.maxbudget)}
+          variant={getBarColor(data.total, data.maxbudget)}
           min={0}
           max={data.maxbudget}
-          now={total}
+          now={data.total}
         />
         <Stack
           direction="horizontal"
@@ -32,8 +31,8 @@ function Cards(data) {
   );
 }
 
-function getBarColor(total, maxbudget) {
-  const diff = total / maxbudget;
+function getBarColor(now, maxbudget) {
+  const diff = now / maxbudget;
   if (diff < 0.5) return "success";
   if (diff < 0.75) return "warning";
   return "danger";
