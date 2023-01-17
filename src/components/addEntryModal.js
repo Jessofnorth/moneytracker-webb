@@ -2,28 +2,29 @@ import { Modal, Form, Button } from "react-bootstrap";
 import { useRef } from "react";
 import GetData from "../services/getdata";
 
+//Modal with form for adding entry
 export default function AddEntryModal({ show, handle, categories }) {
-  //create refs for inputs
+  //create refs for inputs connected to inputs
   const nameRef = useRef();
   const amountRef = useRef();
   const dateRef = useRef();
   const categoryRef = useRef();
 
-
-  //function for save btn
+  //function for save btn thats sends object with input values to API
   function handleSubmit(e) {
     e.preventDefault();
     const object = {
       title: nameRef.current.value,
       amount: parseInt(amountRef.current.value),
       date: dateRef.current.value,
-      category_id: categoryRef.current.value
+      category_id: categoryRef.current.value,
     };
     GetData.createEntry(object);
     handle();
-    // window.location.reload();
+    window.location.reload();
   }
   return (
+    //Modal with form - show/hide function, savebtn, closebtn, selection list with categories from db
     <Modal show={show} onHide={handle}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
@@ -48,11 +49,14 @@ export default function AddEntryModal({ show, handle, categories }) {
               step={1}
             />
           </Form.Group>
+          {/* takes categories state from parent and loops the categories to selection list for connecting entry to category in db */}
           <Form.Group controlId="category" className="mb-3">
             <Form.Label>Category</Form.Label>
-            <Form.Select ref={categoryRef} defaultValue={"zero"}  required>
-              <option disabled value={"zero"}>Choose a category</option>
-              {categories.map(category => (
+            <Form.Select ref={categoryRef} defaultValue={"zero"} required>
+              <option disabled value={"zero"}>
+                Choose a category
+              </option>
+              {categories.map((category) => (
                 <option key={category._id} value={category._id}>
                   {category.name}
                 </option>

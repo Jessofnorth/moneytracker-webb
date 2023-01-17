@@ -2,12 +2,13 @@ import { Modal, Form, Button } from "react-bootstrap";
 import { useRef } from "react";
 import GetData from "../services/getdata";
 
+//Modal with form to add category
 export default function AddCategoryModal({ show, handle }) {
-  //create refs for inputs
+  //create refs for inputs to connect to inputs
   const nameRef = useRef();
   const maxbudgetRef = useRef();
 
-  //function for save btn
+  //function for save btn, 
   function handleSubmit(e) {
     e.preventDefault();
     const object = {
@@ -19,6 +20,7 @@ export default function AddCategoryModal({ show, handle }) {
     window.location.reload();
   }
   return (
+    //Modal with form - closebtn, savebtn, and shiw/hide thru changing state in parent
     <Modal show={show} onHide={handle}>
       <Form onSubmit={handleSubmit}>
         <Modal.Header closeButton>
