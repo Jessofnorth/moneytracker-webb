@@ -9,15 +9,21 @@ export default function AddCategoryModal({ show, handle }) {
   const maxbudgetRef = useRef();
 
   //function for save btn, 
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const object = {
       name: nameRef.current.value,
       maxbudget: parseInt(maxbudgetRef.current.value),
     };
-    GetData.createCategory(object);
-    handle();
-    window.location.reload();
+    await GetData.createCategory(object)
+    .then(function (res) {
+      //  await response before reload so data will render
+      window.location.reload();
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    });
   }
   return (
     //Modal with form - closebtn, savebtn, and shiw/hide thru changing state in parent

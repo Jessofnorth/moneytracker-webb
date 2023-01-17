@@ -11,7 +11,7 @@ export default function AddEntryModal({ show, handle, categories }) {
   const categoryRef = useRef();
 
   //function for save btn thats sends object with input values to API
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const object = {
       title: nameRef.current.value,
@@ -19,10 +19,18 @@ export default function AddEntryModal({ show, handle, categories }) {
       date: dateRef.current.value,
       category_id: categoryRef.current.value,
     };
-    GetData.createEntry(object);
-    handle();
-    window.location.reload();
+      await GetData.createEntry(object)
+        .then(function (res) {
+          //  await response before reload so data will render
+          window.location.reload();
+        })
+        .catch(function (error) {
+          // handle error
+          console.log(error);
+        });
+    
   }
+
   return (
     //Modal with form - show/hide function, savebtn, closebtn, selection list with categories from db
     <Modal show={show} onHide={handle}>
