@@ -1,5 +1,7 @@
 import React from "react";
 import { Card, ProgressBar, Stack, Button } from "react-bootstrap";
+
+//print category cards with data from categories state
 function Cards(data) {
   return (
     <Card>
@@ -23,14 +25,13 @@ function Cards(data) {
           gap="2"
           className="my-3 justify-content-end"
         >
-          <Button variant="outline-success">Add Entry</Button>
           <Button variant="outline-success">View Entries</Button>
         </Stack>
       </Card.Body>
     </Card>
   );
 }
-
+//set color of progressbar depending on % of maxbudet spent
 function getBarColor(now, maxbudget) {
   const diff = now / maxbudget;
   if (diff < 0.5) return "success";

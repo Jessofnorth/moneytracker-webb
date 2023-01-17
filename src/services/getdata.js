@@ -1,5 +1,5 @@
 import axios from "../axios-config";
-
+//create shortcuts for axios requests
 class GetData {
   //the HTTP requests for entries endpoint in API
   //get all

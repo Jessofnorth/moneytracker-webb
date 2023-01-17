@@ -5,17 +5,22 @@ import AddCategoryModal from "./addCategoryModal";
 import AddEntryModal from "./addEntryModal";
 import GetData from "../services/getdata";
 
+//print list of categories cards and amounts connected to them 
 function CategoriesList() {
+
+  //set states
   const [Categories, setCategories] = useState([]);
   const [Entries, setEntries] = useState([]);
   const [showAddCategory, setShowAddCategory] = useState(false);
   const [showAddEntry, setShowAddEntry] = useState(false);
 
+  //useEffect for HTTPS requests with axios from API
+  //fetch categories
   useEffect(() => {
     const fetch = async () => {
       await GetData.getAllCategories()
         .then(function (res) {
-          // handle success
+          //  set data to state
           setCategories(res.data);
         })
         .catch(function (error) {
@@ -25,11 +30,13 @@ function CategoriesList() {
     };
     fetch();
   }, []);
+  //useEffect for HTTPS requests with axios from API
+  //fetch entries
   useEffect(() => {
     const fetch = async () => {
       await GetData.getAllEntries()
         .then(function (res) {
-          // handle success
+          // set data to state
           setEntries(res.data);
         })
         .catch(function (error) {
@@ -40,6 +47,7 @@ function CategoriesList() {
     fetch();
   }, []);
 
+  //filter entries by category id 
   function entriesByCategory(id) {
     return Entries.filter((Entries) => Entries.category_id === id);
   }
@@ -52,6 +60,7 @@ function CategoriesList() {
         gap="5"
         className="my-3 justify-content-center"
       >
+        {/* buttns for adding category and entry */}
         <Button variant="success" onClick={() => setShowAddEntry(true)}>Add Entry</Button>
         <Button variant="success" onClick={() => setShowAddCategory(true)}>
           Add Category
@@ -66,7 +75,8 @@ function CategoriesList() {
           margin: "0 auto",
         }}
       >
-        {Categories.map((category) => {
+        {/* loop thru categories to print cards with amounts, calculate amount spent so far with entriesVycategory method */}
+         {Categories.map((category) => {
           const total = entriesByCategory(category._id).reduce(
             (amount, entry) => amount + entry.amount,
             0
@@ -81,6 +91,7 @@ function CategoriesList() {
           );
         })}
       </div>
+      {/* modals for the forms to add */}
       <AddCategoryModal
         show={showAddCategory}
         handle={() => setShowAddCategory(false)}
