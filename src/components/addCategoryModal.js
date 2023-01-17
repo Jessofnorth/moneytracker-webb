@@ -1,6 +1,7 @@
 import { Modal, Form, Button } from "react-bootstrap";
 import { useRef } from "react";
 import GetData from "../services/getdata";
+
 export default function AddCategoryModal({ show, handle }) {
   //create refs for inputs
   const nameRef = useRef();
@@ -12,14 +13,15 @@ export default function AddCategoryModal({ show, handle }) {
     const object = {
       name: nameRef.current.value,
       maxbudget: parseInt(maxbudgetRef.current.value),
-    }
-    GetData.createCategory(object)
+    };
+    GetData.createCategory(object);
+    handle();
     window.location.reload();
   }
   return (
     <Modal show={show} onHide={handle}>
       <Form onSubmit={handleSubmit}>
-        <Modal.Header>
+        <Modal.Header closeButton>
           <Modal.Title>New Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
