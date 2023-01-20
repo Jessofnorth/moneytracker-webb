@@ -1,6 +1,6 @@
 # MoneyTracker
 
-This site uses this API for data: [https://github.com/Jessofnorth/MoneyTracker-API](MoneyTracker API)
+This site uses this API for data: [https://github.com/Jessofnorth/MoneyTracker-API](MoneyTracker-API)
 
  By: Jessica Ejelöv For: Project assigment for the course "Web Development with Javascript" at Mid Sweden University
  
