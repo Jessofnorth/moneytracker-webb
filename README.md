@@ -1,6 +1,9 @@
 # MoneyTracker
+This project cosnumes data from below API. 
 
-This site uses this API for data: [https://github.com/Jessofnorth/MoneyTracker-API](MoneyTracker-API)
+The link to the API: [MoneyTracker-API](https://moneytracker-8032.onrender.com/)
+
+A demo of the client webbpage is available here: [Money-Tracker-jeej](https://money-tracker-jeej.netlify.app/)
 
  By: Jessica Ejelöv For: Project assigment for the course "Web Development with Javascript" at Mid Sweden University
  
